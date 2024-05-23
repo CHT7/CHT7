@@ -16,8 +16,10 @@
   <a href="https://www.youtube.com/@CaoHoangTan">
     <img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?logo=YouTube&logoColor=white" alt="YouTube">
   </a>
+  <a href="https://github.com/CHT7">
+    <img src="https://img.shields.io/github/followers/CHT7?label=follow&style=social" alt="GitHub Followers">
+  </a>
 </p>
-  [![GitHub: CHT7](https://img.shields.io/github/followers/CHT7?label=follow&style=social)](https://github.com/CHT7)
 
 # 💻 Languages I'm Best At
 <p align="center">
