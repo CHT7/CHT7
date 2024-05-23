@@ -2,8 +2,6 @@
 
 <h3 align="center">I'm a Coder from VietNam</h3>
 
-[![GitHub: CHT7](https://img.shields.io/github/followers/CHT7?label=follow&style=social)](https://github.com/CHT7)
-
 # 🌐 Socials
 <p align="center">
   <a href="https://discord.gg/khMBgqJ5A6">
@@ -18,6 +16,7 @@
   <a href="https://www.youtube.com/@CaoHoangTan">
     <img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?logo=YouTube&logoColor=white" alt="YouTube">
   </a>
+  [![GitHub: CHT7](https://img.shields.io/github/followers/CHT7?label=follow&style=social)](https://github.com/CHT7)
 </p>
 
 # 💻 Languages I'm Best At
