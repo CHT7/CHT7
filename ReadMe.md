@@ -1,6 +1,7 @@
 ## Hi, I'm [CHT](https://www.facebook.com/C.hoangtan) 👋
 
 <h3 align="center">I'm a Coder from VietNam</h3>
+
 [![GitHub: CHT7](https://img.shields.io/github/followers/CHT7?label=follow&style=social)](https://github.com/CHT7)
 
 # 🌐 Socials
@@ -14,7 +15,7 @@
   <a href="https://instagram.com/hoangtan.737">
     <img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white" alt="Instagram">
   </a>
-  <a href="https://youtube.com/c/UCSY6FP1mkXsyPawPU_s6hOg">
+  <a href="https://www.youtube.com/@CaoHoangTan">
     <img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?logo=YouTube&logoColor=white" alt="YouTube">
   </a>
 </p>
@@ -29,8 +30,6 @@
 # 📊 GitHub Stats
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=CHT7&theme=radical&hide_border=false&include_all_commits=false&count_private=false" alt="GitHub Stats"><br/>
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=CHT7&theme=radical&hide_border=false" alt="GitHub Streak"><br/>
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=CHT7&theme=radical&hide_border=false&include_all_commits=false&count_private=false&layout=compact" alt="Top Languages">
 </p>
 
 # 🏆 GitHub Trophies
