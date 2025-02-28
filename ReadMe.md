@@ -1,10 +1,12 @@
 ## Hi, I'm [CHT](https://www.facebook.com/C.hoangtan) 👋
 
-<h3 align="center">I'm a Coder from VietNam</h3>
+<meta name="description" content="I'm a coder from Vietnam. Specializing in JavaScript, Node.js, and Python.">
+<meta name="author" content="CHT">
+<meta name="keywords" content="Developer, JavaScript, Node.js, Python, GitHub">
 
 # 🌐 Socials
 <p align="center">
-  <a href="discord.gg/UWN2m9bpXn">
+  <a href="https://discord.gg/UWN2m9bpXn">
     <img src="https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white" alt="Discord">
   </a>
   <a href="https://facebook.com/C.hoangtan">
@@ -23,14 +25,14 @@
 
 # 💻 Languages I'm Best At
 <p align="center">
-  <code><img height="30" src="https://img.shields.io/badge/javascript-%23323330.svg?style=plastic&logo=javascript&logoColor=%23F7DF1E"></code>
-  <code><img height="30" src="https://img.shields.io/badge/node.js-6DA55F?style=plastic&logo=node.js&logoColor=white"></code>
-  <code><img height="30" src="https://img.shields.io/badge/python-3670A0?style=plastic&logo=python&logoColor=ffdd54"></code>
+  <img height="30" src="https://img.shields.io/badge/javascript-%23323330.svg?style=plastic&logo=javascript&logoColor=%23F7DF1E">
+  <img height="30" src="https://img.shields.io/badge/node.js-6DA55F?style=plastic&logo=node.js&logoColor=white">
+  <img height="30" src="https://img.shields.io/badge/python-3670A0?style=plastic&logo=python&logoColor=ffdd54">
 </p>
 
 # 📊 GitHub Stats
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=CHT7&theme=radical&hide_border=false&include_all_commits=false&count_private=false" alt="GitHub Stats"><br/>
+  <img src="https://github-readme-stats.vercel.app/api?username=CHT7&theme=dracula&hide_border=false&include_all_commits=false&count_private=true" alt="GitHub Stats"><br/>
 </p>
 
 # 🏆 GitHub Trophies
