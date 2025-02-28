@@ -33,13 +33,13 @@
 # 📊 GitHub Stats
 <p align="center">
   <img src="https://github-readme-stats.vercel.app/api?username=CHT7&theme=dracula&hide_border=false&include_all_commits=false&count_private=true" alt="GitHub Stats"><br/>
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=CHT7&theme=dracula&hide_border=true" alt="Streak"> 
 </p>
 
 # 🏆 GitHub Trophies
 <p align="center">
   <img src="https://github-trophies.vercel.app/?username=CHT7&theme=dracula&no-frame=false&no-bg=true&margin-w=4" alt="GitHub Trophies">
   <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=CHT7&theme=dracula&hide_border=true&include_all_commits=true&count_private=true&layout=compact" alt="Top Languages">
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=CHT7&theme=dracula&hide_border=true" alt="Streak"> 
 </p>
 
 # ✍️ Random Dev Quote
