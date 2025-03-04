@@ -39,6 +39,7 @@
 # 🏆 GitHub Trophies
 <p align="center">
   <img src="https://github-trophies.vercel.app/?username=CHT7&theme=dracula&no-frame=false&no-bg=true&margin-w=4" alt="GitHub Trophies">
+  <img sr="https://github-readme-stats.vercel.app/api/top-langs/?username=CHT7&theme=dracula&hide_border=true&include_all_commits=true&count_private=true&layout=compact">
   <!--START_SECTION:stats-->
   <!--END_SECTION:stats-->
 
