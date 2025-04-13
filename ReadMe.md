@@ -65,4 +65,7 @@
   <a href="https://playerduo.net/hoangtan85">
     <img src="https://img.shields.io/badge/PlayerDuo-HoangTan85-ff69b4?style=for-the-badge&logo=ko-fi&logoColor=white" alt="PlayerDuo">
   </a>
+  <a href="https://www.paypal.com/paypalme/chtan7">
+    <img src="https://img.shields.io/badge/PayPal-Donate-009cde?style=for-the-badge&logo=paypal&logoColor=white" alt="PayPal Donate">
+  </a>
 </p>
