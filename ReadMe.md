@@ -62,4 +62,7 @@
   <a href="https://www.buymeacoffee.com/HoangTan">
     <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="BuyMeACoffee">
   </a>
+  <a href="https://playerduo.net/hoangtan85">
+    <img src="https://img.shields.io/badge/PlayerDuo-HoangTan85-ff69b4?style=for-the-badge&logo=ko-fi&logoColor=white" alt="PlayerDuo">
+  </a>
 </p>
