@@ -10,7 +10,7 @@
     <img src="https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white" alt="Discord">
   </a>
   <a href="https://hoangtan.carrd.co/">
-    <img src="https://img.shields.io/badge/Carrd_Profile-%23000000.svg&logo=internet-explorer&logoColor=white" alt="Carrd Profile">
+    <img src="https://img.shields.io/badge/Carrd_Profile-%23000000.svg?style=flat&logo=internet-explorer&logoColor=white" alt="Carrd Profile">
   </a>
   <!--
   <a href="https://facebook.com/C.hoangtan">
