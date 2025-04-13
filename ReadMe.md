@@ -6,9 +6,10 @@
 
 # 🌐 Socials
 <p align="center">
-  <a href="https://discord.gg/UWN2m9bpXn">
+  <a href="https://bio.link/moondiscord">
     <img src="https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white" alt="Discord">
   </a>
+  <!--
   <a href="https://facebook.com/C.hoangtan">
     <img src="https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white" alt="Facebook">
   </a>
@@ -18,6 +19,7 @@
   <a href="https://www.youtube.com/@CaoHoangTan">
     <img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?logo=YouTube&logoColor=white" alt="YouTube">
   </a>
+  -->
   <a href="https://github.com/CHT7">
     <img src="https://img.shields.io/github/followers/CHT7?label=follow&style=social" alt="GitHub Followers">
   </a>
