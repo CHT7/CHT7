@@ -9,7 +9,7 @@
   <a href="https://bio.link/moondiscord">
     <img src="https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white" alt="Discord">
   </a>
-  <a href="https://hoangtan.carrd.co/">
+  <a href="https://guns.lol/ddiablo">
     <img src="https://img.shields.io/badge/Carrd_Profile-%23000000.svg?style=flat&logo=internet-explorer&logoColor=white" alt="Carrd Profile">
   </a>
   <!--
