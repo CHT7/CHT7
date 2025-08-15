@@ -24,7 +24,7 @@
   </a>
   -->
   <a href="https://github.com/CHT7">
-    <img src="https://img.shields.io/github/followers/CHT7?label=follow&style=social" alt="GitHub Followers">
+    <img src="https://img.shields.io/github/followers/CHT7?label=follow&style=social&cache_bust=1" alt="GitHub Followers">
   </a>
 </p>
 
@@ -37,14 +37,14 @@
 
 # 📊 GitHub Stats
 <p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=CHT7&theme=dracula&hide_border=false&include_all_commits=false&count_private=true" alt="GitHub Stats"><br/>
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=CHT7&theme=dracula&hide_border=true" alt="Streak"> 
+  <img src="https://github-readme-stats.vercel.app/api?username=CHT7&theme=dracula&hide_border=false&include_all_commits=false&count_private=true&cache_bust=1" alt="GitHub Stats"><br/>
+  <img src="https://github-readme-streak-stats.herokuapp.com/?user=CHT7&theme=dracula&hide_border=true&cache_bust=1" alt="Streak"> 
 </p>
 
 # 🏆 GitHub Trophies
 <p align="center">
-  <img src="https://github-trophies.vercel.app/?username=CHT7&theme=dracula&no-frame=false&no-bg=true&margin-w=4" alt="GitHub Trophies">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=CHT7&theme=dracula&hide_border=true&include_all_commits=true&count_private=true&layout=compact">
+  <img src="https://github-trophies.vercel.app/?username=CHT7&theme=dracula&no-frame=false&no-bg=true&margin-w=4&cache_bust=1" alt="GitHub Trophies">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=CHT7&theme=dracula&hide_border=true&include_all_commits=true&count_private=true&layout=compact&cache_bust=1">
   <!--START_SECTION:stats-->
   <!--END_SECTION:stats-->
 
