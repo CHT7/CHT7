@@ -14,9 +14,10 @@ jobs:
       - name: Update README stats section
         uses: lowlighter/metrics@latest
         with:
-          filename: README.md
+          filename: ReadMe.md
           token: ${{ secrets.GITHUB_TOKEN }}
           base: ""
+          template: markdown
           plugin_lines: yes
           plugin_followup: yes
           plugin_followup_sections: repositories, userstars
