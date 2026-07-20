@@ -1,71 +1,70 @@
-## Hi, I'm [CHT](https://www.facebook.com/C.hoangtan) 👋
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/hero-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/hero-light.svg">
+    <img alt="Tân — CHT7, building useful software from Vietnam" src="./assets/hero-light.svg" width="100%">
+  </picture>
+</div>
 
-<meta name="description" content="I'm a coder from Vietnam. Specializing in JavaScript, Node.js, and Python.">
-<meta name="author" content="CHT">
-<meta name="keywords" content="Developer, JavaScript, Node.js, Python, GitHub">
-
-# 🌐 Socials
 <p align="center">
-  <a href="https://bio.link/moondiscord">
-    <img src="https://img.shields.io/badge/Discord-%237289DA.svg?logo=discord&logoColor=white" alt="Discord">
-  </a>
-  <a href="https://guns.lol/ddiablo">
-    <img src="https://img.shields.io/badge/Carrd_Profile-%23000000.svg?style=flat&logo=internet-explorer&logoColor=white" alt="Carrd Profile">
-  </a>
-  <!--
-  <a href="https://facebook.com/C.hoangtan">
-    <img src="https://img.shields.io/badge/Facebook-%231877F2.svg?logo=Facebook&logoColor=white" alt="Facebook">
-  </a>
-  <a href="https://instagram.com/hoangtan.737">
-    <img src="https://img.shields.io/badge/Instagram-%23E4405F.svg?logo=Instagram&logoColor=white" alt="Instagram">
-  </a>
-  <a href="https://www.youtube.com/@CaoHoangTan">
-    <img src="https://img.shields.io/badge/YouTube-%23FF0000.svg?logo=YouTube&logoColor=white" alt="YouTube">
-  </a>
-  -->
-  <a href="https://github.com/CHT7">
-    <img src="https://img.shields.io/github/followers/CHT7?label=follow&style=social&cache_bust=1" alt="GitHub Followers">
-  </a>
+  <a href="https://github.com/CHT7"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-CHT7-181717?style=flat-square&logo=github"></a>
+  <a href="https://bio.link/moondiscord"><img alt="Discord and social links" src="https://img.shields.io/badge/Let's_connect-5865F2?style=flat-square&logo=discord&logoColor=white"></a>
+  <img alt="Based in Vietnam" src="https://img.shields.io/badge/Based_in-Vietnam-DA251D?style=flat-square">
 </p>
 
-# 💻 Languages I'm Best At
-<p align="center">
-  <img height="30" src="https://img.shields.io/badge/javascript-%23323330.svg?style=plastic&logo=javascript&logoColor=%23F7DF1E">
-  <img height="30" src="https://img.shields.io/badge/node.js-6DA55F?style=plastic&logo=node.js&logoColor=white">
-  <img height="30" src="https://img.shields.io/badge/python-3670A0?style=plastic&logo=python&logoColor=ffdd54">
+## Hello / Xin chào
+
+I'm Tân, an independent developer who enjoys turning repetitive work and curious ideas into practical software. I learn by building, breaking, and shipping — usually somewhere between automation, backend tools, and small products that solve a real problem.
+
+```text
+currently  →  sharpening my systems, automation, and product-building skills
+principle  →  useful first, polished always, simpler when possible
+```
+
+## Selected work
+
+| Project | What it solves | Stack |
+| :-- | :-- | :-- |
+| [cash-counter](https://github.com/CHT7/cash-counter) | Counts cash and handles transactions that happen during reconciliation. | JavaScript |
+| [DiabloNetwork](https://github.com/CHT7/DiabloNetwork) | Discovers devices on a local network and enriches MAC vendor information. | Python |
+| [Roblox_Scripts](https://github.com/CHT7/Roblox_Scripts) | A public collection of scripts created or adapted for testing and automation. | Lua |
+
+## GitHub at a glance
+
+<div align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-stats-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/profile-stats-light.svg">
+    <img alt="CHT7 GitHub statistics" src="./assets/profile-stats-light.svg" width="100%">
+  </picture>
+</div>
+
+<sub>Private repositories are included only as aggregate numbers. Their names, descriptions, languages, URLs, and activity details are never published by this repository.</sub>
+
+## Toolbox
+
+<p>
+  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-18181B?style=flat-square&logo=javascript&logoColor=F7DF1E">
+  <img alt="Node.js" src="https://img.shields.io/badge/Node.js-18181B?style=flat-square&logo=nodedotjs&logoColor=5FA04E">
+  <img alt="Python" src="https://img.shields.io/badge/Python-18181B?style=flat-square&logo=python&logoColor=3776AB">
+  <img alt="Lua" src="https://img.shields.io/badge/Lua-18181B?style=flat-square&logo=lua&logoColor=5A45FF">
+  <img alt="Git" src="https://img.shields.io/badge/Git-18181B?style=flat-square&logo=git&logoColor=F05032">
+  <img alt="GitHub Actions" src="https://img.shields.io/badge/GitHub_Actions-18181B?style=flat-square&logo=githubactions&logoColor=2088FF">
 </p>
 
-# 📊 GitHub Stats
-<p align="center">
-  <img src="https://github-readme-stats.vercel.app/api?username=CHT7&theme=dracula&hide_border=false&include_all_commits=false&count_private=true&cache_bust=1" alt="GitHub Stats"><br/>
-  <img src="https://github-readme-streak-stats.herokuapp.com/?user=CHT7&theme=dracula&hide_border=true&cache_bust=1" alt="Streak"> 
-</p>
+## Find me
 
-# 🏆 GitHub Trophies
-<p align="center">
-  <img src="https://github-trophies.vercel.app/?username=CHT7&theme=dracula&no-frame=false&no-bg=true&margin-w=4&cache_bust=1" alt="GitHub Trophies">
-  <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=CHT7&theme=dracula&hide_border=true&include_all_commits=true&count_private=true&layout=compact&cache_bust=1">
-  <!--START_SECTION:stats-->
-  <!--END_SECTION:stats-->
+The easiest way to reach me is through [my social hub](https://bio.link/moondiscord). More links live at [guns.lol/ddiablo](https://guns.lol/ddiablo).
 
-</p>
+<details>
+  <summary>Support my work</summary>
+  <br>
+  If something I made helped you, you can support future experiments through
+  <a href="https://www.buymeacoffee.com/HoangTan">Buy Me a Coffee</a>,
+  <a href="https://www.paypal.com/paypalme/chtan7">PayPal</a>, or
+  <a href="https://playerduo.net/hoangtan85">PlayerDuo</a>.
+</details>
 
-# ✍️ Random Dev Quote
-<p align="center">
-  <img src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight&cache_bust=1" alt="Random Dev Quote">
-</p>
+<br>
 
----
-
-# 💰 You can help me by Donating
-<p align="center">
-  <a href="https://www.buymeacoffee.com/HoangTan">
-    <img src="https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black" alt="BuyMeACoffee">
-  </a>
-  <a href="https://playerduo.net/hoangtan85">
-    <img src="https://img.shields.io/badge/PlayerDuo-HoangTan85-ff69b4?style=for-the-badge&logo=ko-fi&logoColor=white" alt="PlayerDuo">
-  </a>
-  <a href="https://www.paypal.com/paypalme/chtan7">
-    <img src="https://img.shields.io/badge/PayPal-Donate-009cde?style=for-the-badge&logo=paypal&logoColor=white" alt="PayPal Donate">
-  </a>
-</p>
+<p align="center"><sub>Designed and automated by CHT7 · Metrics refresh only when the underlying numbers change.</sub></p>
