@@ -42,7 +42,7 @@
         <g transform="translate(460 70)">
           <rect width="195" height="115" rx="16" fill="#FFFFFF" stroke="#DDE1EB"/>
           <rect x="16" y="18" width="28" height="4" rx="2" fill="#6957E8"/>
-          <text x="16" y="64" class="metric">—</text>
+          <text x="16" y="64" class="metric">0</text>
           <text x="16" y="87" class="label">CONTRIBUTIONS</text>
           <text x="16" y="104" class="detail">last 12 months</text>
         </g>
