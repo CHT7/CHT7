@@ -20,7 +20,7 @@ concurrency:
 
 jobs:
   refresh:
-    name: Generate privacy-safe aggregate cards
+    name: Build profile cards
     runs-on: ubuntu-latest
     timeout-minutes: 5
 
@@ -33,18 +33,18 @@ jobs:
         env:
           PROFILE_LOGIN: ${{ vars.PROFILE_LOGIN || github.repository_owner }}
           PROFILE_TOKEN: ${{ secrets.PROFILE_TOKEN }}
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          REQUIRE_COMPLETE_REPOSITORY_ACCESS: "true"
 
       - name: Commit changed cards
         shell: bash
         run: |
-          if git diff --quiet -- assets/profile-stats-light.svg assets/profile-stats-dark.svg; then
+          if git diff --quiet -- assets/profile-stats-light.svg assets/profile-stats-dark.svg assets/languages-light.svg assets/languages-dark.svg; then
             echo "Profile metrics are already current."
             exit 0
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add assets/profile-stats-light.svg assets/profile-stats-dark.svg
-          git commit -m "chore(profile): refresh aggregate metrics"
+          git add assets/profile-stats-light.svg assets/profile-stats-dark.svg assets/languages-light.svg assets/languages-dark.svg
+          git commit -m "chore(profile): refresh profile cards"
           git push

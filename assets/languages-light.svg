@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="260" viewBox="0 0 440 260" role="img" aria-labelledby="title desc">
+  <title id="title">CHT7 language mix</title>
+  <desc id="desc">Most used programming languages by repository size.</desc>
+  <defs>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop stop-color="#009688"/>
+      <stop offset="1" stop-color="#7C3AED"/>
+    </linearGradient>
+    <clipPath id="bar"><rect x="24" y="67" width="392" height="10" rx="5"/></clipPath>
+  </defs>
+  <style>
+    text { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .heading { fill: #1F2328; font-size: 16px; font-weight: 700; }
+    .eyebrow { fill: #009688; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; }
+    .language { fill: #1F2328; font-size: 12px; font-weight: 600; }
+    .percent { fill: #59636E; font-size: 12px; font-variant-numeric: tabular-nums; }
+  </style>
+  <rect x=".5" y=".5" width="439" height="259" rx="16" fill="#FFFFFF" stroke="#D0D7DE"/>
+  <rect x="1" y="1" width="438" height="4" rx="2" fill="url(#accent)"/>
+  <text x="24" y="31" class="eyebrow">LANGUAGES</text>
+  <text x="24" y="51" class="heading">Language mix</text>
+  <g clip-path="url(#bar)"><rect x="24.0" y="67" width="170.3" height="10" fill="#F1E05A"/><rect x="194.3" y="67" width="80.3" height="10" fill="#3572A5"/><rect x="274.6" y="67" width="57.2" height="10" fill="#E34C26"/><rect x="331.8" y="67" width="57.1" height="10" fill="#563D7C"/><rect x="388.9" y="67" width="27.1" height="10" fill="#000080"/></g>
+  <g transform="translate(28 112)">
+        <circle cx="5" cy="-4" r="5" fill="#F1E05A"/>
+        <text x="18" class="language">JavaScript</text>
+        <text x="382" text-anchor="end" class="percent">43.4%</text>
+      </g>
+<g transform="translate(28 141)">
+        <circle cx="5" cy="-4" r="5" fill="#3572A5"/>
+        <text x="18" class="language">Python</text>
+        <text x="382" text-anchor="end" class="percent">20.5%</text>
+      </g>
+<g transform="translate(28 170)">
+        <circle cx="5" cy="-4" r="5" fill="#E34C26"/>
+        <text x="18" class="language">HTML</text>
+        <text x="382" text-anchor="end" class="percent">14.6%</text>
+      </g>
+<g transform="translate(28 199)">
+        <circle cx="5" cy="-4" r="5" fill="#563D7C"/>
+        <text x="18" class="language">CSS</text>
+        <text x="382" text-anchor="end" class="percent">14.6%</text>
+      </g>
+<g transform="translate(28 228)">
+        <circle cx="5" cy="-4" r="5" fill="#000080"/>
+        <text x="18" class="language">Lua</text>
+        <text x="382" text-anchor="end" class="percent">6.9%</text>
+      </g>
+</svg>

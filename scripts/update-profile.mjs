@@ -6,80 +6,279 @@ const login = (
   process.env.GITHUB_REPOSITORY_OWNER ||
   "CHT7"
 ).trim();
-
-const profileToken = process.env.PROFILE_TOKEN?.trim() || "";
-const apiToken = profileToken || process.env.GH_TOKEN?.trim() || "";
+const token = process.env.PROFILE_TOKEN?.trim() || "";
+const requireCompleteAccess =
+  process.env.REQUIRE_COMPLETE_REPOSITORY_ACCESS === "true";
 const apiBase = "https://api.github.com";
+const oneDay = 24 * 60 * 60 * 1000;
 
-const headers = (token = apiToken) => ({
-  Accept: "application/vnd.github+json",
-  "X-GitHub-Api-Version": "2022-11-28",
-  "User-Agent": `${login}-profile-metrics`,
-  ...(token ? { Authorization: `Bearer ${token}` } : {}),
-});
+function requestHeaders(authToken = token) {
+  return {
+    Accept: "application/vnd.github+json",
+    "X-GitHub-Api-Version": "2022-11-28",
+    "User-Agent": `${login}-profile-cards`,
+    ...(authToken ? { Authorization: `Bearer ${authToken}` } : {}),
+  };
+}
 
-async function requestJson(url, token = apiToken) {
-  const response = await fetch(url, { headers: headers(token) });
+async function requestJson(url, authToken = token) {
+  const response = await fetch(url, { headers: requestHeaders(authToken) });
   if (!response.ok) {
-    throw new Error(`GitHub API request failed with HTTP ${response.status}.`);
+    throw new Error(`GitHub API returned HTTP ${response.status}.`);
   }
   return response.json();
 }
 
-async function paginatedRepositories() {
-  const repositories = [];
-  const privateAggregationEnabled = Boolean(profileToken);
+async function graphQL(query, variables = {}) {
+  const response = await fetch(`${apiBase}/graphql`, {
+    method: "POST",
+    headers: { ...requestHeaders(), "Content-Type": "application/json" },
+    body: JSON.stringify({ query, variables }),
+  });
+  if (!response.ok) {
+    throw new Error(`GitHub GraphQL returned HTTP ${response.status}.`);
+  }
+  const payload = await response.json();
+  if (payload.errors?.length) {
+    throw new Error(`GitHub GraphQL: ${payload.errors[0].message}`);
+  }
+  return payload.data;
+}
 
-  if (privateAggregationEnabled) {
-    const viewer = await requestJson(`${apiBase}/user`, profileToken);
-    if (viewer.login.toLowerCase() !== login.toLowerCase()) {
-      throw new Error("PROFILE_TOKEN does not belong to PROFILE_LOGIN.");
+async function publicRepositoryCount() {
+  const user = await requestJson(
+    `${apiBase}/users/${encodeURIComponent(login)}`,
+    "",
+  );
+  return { count: user.public_repos, createdAt: user.created_at };
+}
+
+async function authenticatedOwnedRepositoryCount() {
+  let count = 0;
+  for (let page = 1; ; page += 1) {
+    const repositories = await requestJson(
+      `${apiBase}/user/repos?visibility=all&affiliation=owner&per_page=100&page=${page}`,
+    );
+    count += repositories.filter(
+      (repository) => repository.owner.login.toLowerCase() === login.toLowerCase(),
+    ).length;
+    if (repositories.length < 100) break;
+  }
+  return count;
+}
+
+async function authenticatedStats() {
+  const identity = await graphQL(`
+    query ProfileIdentity {
+      viewer {
+        id
+        login
+        createdAt
+      }
     }
+  `);
+
+  if (identity.viewer.login.toLowerCase() !== login.toLowerCase()) {
+    throw new Error("PROFILE_TOKEN belongs to a different GitHub account.");
   }
 
-  for (let page = 1; ; page += 1) {
-    const url = privateAggregationEnabled
-      ? `${apiBase}/user/repos?visibility=all&affiliation=owner&sort=updated&per_page=100&page=${page}`
-      : `${apiBase}/users/${encodeURIComponent(login)}/repos?type=owner&sort=updated&per_page=100&page=${page}`;
-    const batch = await requestJson(url, privateAggregationEnabled ? profileToken : "");
-    const owned = batch.filter(
-      (repository) => repository.owner.login.toLowerCase() === login.toLowerCase(),
+  const [authenticatedCount, publicData] = await Promise.all([
+    authenticatedOwnedRepositoryCount(),
+    publicRepositoryCount(),
+  ]);
+  if (requireCompleteAccess && authenticatedCount <= publicData.count) {
+    throw new Error(
+      "PROFILE_TOKEN cannot access the complete repository set. Update its repository scopes before rerunning.",
     );
-    repositories.push(...owned);
+  }
+
+  const to = new Date();
+  const from = new Date(to.getTime() - 364 * oneDay);
+  const since = from.toISOString();
+  const contributionData = await graphQL(
+    `
+      query ProfileActivity($from: DateTime!, $to: DateTime!) {
+        viewer {
+          contributionsCollection(from: $from, to: $to) {
+            contributionCalendar {
+              totalContributions
+              weeks {
+                contributionDays {
+                  contributionCount
+                  date
+                }
+              }
+            }
+          }
+        }
+      }
+    `,
+    { from: from.toISOString(), to: to.toISOString() },
+  );
+
+  const repositories = [];
+  let after = null;
+  do {
+    const data = await graphQL(
+      `
+        query ProfileRepositories(
+          $after: String
+          $authorId: ID!
+          $since: GitTimestamp!
+        ) {
+          viewer {
+            repositories(
+              first: 50
+              after: $after
+              ownerAffiliations: OWNER
+              orderBy: { field: UPDATED_AT, direction: DESC }
+            ) {
+              pageInfo { hasNextPage endCursor }
+              nodes {
+                isFork
+                stargazerCount
+                languages(first: 12, orderBy: { field: SIZE, direction: DESC }) {
+                  edges {
+                    size
+                    node { name color }
+                  }
+                }
+                defaultBranchRef {
+                  target {
+                    ... on Commit {
+                      history(first: 1, since: $since, author: { id: $authorId }) {
+                        totalCount
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      `,
+      {
+        after,
+        authorId: identity.viewer.id,
+        since,
+      },
+    );
+    const connection = data.viewer.repositories;
+    repositories.push(...connection.nodes);
+    after = connection.pageInfo.hasNextPage
+      ? connection.pageInfo.endCursor
+      : null;
+  } while (after);
+
+  const calendar =
+    contributionData.viewer.contributionsCollection.contributionCalendar;
+  const commitCount = repositories.reduce(
+    (sum, repository) =>
+      sum +
+      (repository.defaultBranchRef?.target?.history?.totalCount ?? 0),
+    0,
+  );
+
+  return {
+    complete: true,
+    createdAt: identity.viewer.createdAt,
+    totalRepositories: repositories.length,
+    contributions: Math.max(calendar.totalContributions, commitCount),
+    stars: repositories.reduce(
+      (sum, repository) => sum + repository.stargazerCount,
+      0,
+    ),
+    languages: collectLanguages(repositories),
+    weeklyActivity: calendar.weeks.map((week) =>
+      week.contributionDays.reduce(
+        (sum, day) => sum + day.contributionCount,
+        0,
+      ),
+    ),
+  };
+}
+
+async function publicFallbackStats() {
+  const repositories = [];
+  for (let page = 1; ; page += 1) {
+    const batch = await requestJson(
+      `${apiBase}/users/${encodeURIComponent(login)}/repos?type=owner&sort=updated&per_page=100&page=${page}`,
+      "",
+    );
+    repositories.push(...batch);
     if (batch.length < 100) break;
   }
 
-  return { repositories, privateAggregationEnabled };
+  const enriched = await Promise.all(
+    repositories.map(async (repository) => {
+      const languages = await requestJson(repository.languages_url, "");
+      return {
+        isFork: repository.fork,
+        stargazerCount: repository.stargazers_count,
+        languages: {
+          edges: Object.entries(languages).map(([name, size]) => ({
+            size,
+            node: { name, color: languageColor(name) },
+          })),
+        },
+      };
+    }),
+  );
+  const publicData = await publicRepositoryCount();
+
+  return {
+    complete: false,
+    createdAt: publicData.createdAt,
+    totalRepositories: repositories.length,
+    contributions: 0,
+    stars: repositories.reduce(
+      (sum, repository) => sum + repository.stargazers_count,
+      0,
+    ),
+    languages: collectLanguages(enriched),
+    weeklyActivity: [],
+  };
 }
 
-async function contributionCount() {
-  if (!apiToken) return null;
+function languageColor(name) {
+  const colors = {
+    JavaScript: "#F1E05A",
+    TypeScript: "#3178C6",
+    Python: "#3572A5",
+    Lua: "#000080",
+    HTML: "#E34C26",
+    CSS: "#563D7C",
+    Shell: "#89E051",
+    Vue: "#41B883",
+  };
+  return colors[name] || "#8B5CF6";
+}
 
-  const to = new Date();
-  const from = new Date(to.getTime() - 364 * 24 * 60 * 60 * 1000);
-  const query = `
-    query ProfileContributions($login: String!, $from: DateTime!, $to: DateTime!) {
-      user(login: $login) {
-        contributionsCollection(from: $from, to: $to) {
-          contributionCalendar { totalContributions }
-        }
-      }
+function collectLanguages(repositories) {
+  const totals = new Map();
+  for (const repository of repositories) {
+    if (repository.isFork) continue;
+    for (const edge of repository.languages?.edges || []) {
+      const current = totals.get(edge.node.name) || {
+        name: edge.node.name,
+        color: edge.node.color || languageColor(edge.node.name),
+        size: 0,
+      };
+      current.size += edge.size;
+      totals.set(edge.node.name, current);
     }
-  `;
+  }
 
-  const response = await fetch(`${apiBase}/graphql`, {
-    method: "POST",
-    headers: { ...headers(), "Content-Type": "application/json" },
-    body: JSON.stringify({
-      query,
-      variables: { login, from: from.toISOString(), to: to.toISOString() },
-    }),
-  });
-
-  if (!response.ok) return null;
-  const payload = await response.json();
-  return payload.data?.user?.contributionsCollection?.contributionCalendar
-    ?.totalContributions ?? null;
+  const grandTotal = [...totals.values()].reduce(
+    (sum, language) => sum + language.size,
+    0,
+  );
+  return [...totals.values()]
+    .sort((left, right) => right.size - left.size)
+    .map((language) => ({
+      ...language,
+      percentage: grandTotal ? (language.size / grandTotal) * 100 : 0,
+    }));
 }
 
 function escapeXml(value) {
@@ -92,121 +291,188 @@ function escapeXml(value) {
 }
 
 function formatNumber(value) {
-  if (value === null) return "—";
-  return new Intl.NumberFormat("en-US").format(value);
+  return new Intl.NumberFormat("en-US", { notation: "compact" }).format(value);
 }
 
-function cardSvg(stats, theme) {
+function themeColors(theme) {
   const dark = theme === "dark";
-  const color = {
-    background: dark ? "#090B13" : "#F7F8FC",
-    panel: dark ? "#111522" : "#FFFFFF",
-    panelBorder: dark ? "#252B3D" : "#DDE1EB",
-    title: dark ? "#F5F7FF" : "#171927",
-    muted: dark ? "#8F98AE" : "#667085",
-    accent: dark ? "#8B7CFF" : "#6957E8",
-    cyan: dark ? "#38D6C7" : "#0A9F94",
+  return {
+    background: dark ? "#0D1117" : "#FFFFFF",
+    panel: dark ? "#151B23" : "#F6F8FA",
+    border: dark ? "#30363D" : "#D0D7DE",
+    text: dark ? "#F0F6FC" : "#1F2328",
+    muted: dark ? "#8B949E" : "#59636E",
+    purple: dark ? "#A78BFA" : "#7C3AED",
+    cyan: dark ? "#2DD4BF" : "#009688",
   };
+}
 
-  const repositoryTotal = stats.privateAggregationEnabled
-    ? formatNumber(stats.totalRepositories)
-    : `${formatNumber(stats.publicRepositories)}+`;
-  const status = stats.privateAggregationEnabled
-    ? "PRIVATE AGGREGATES ON"
-    : "PUBLIC FALLBACK";
-  const note = stats.privateAggregationEnabled
-    ? "Private work is counted only in aggregate — no names, URLs, or metadata are published."
-    : "Add PROFILE_TOKEN to include private repositories; public data is shown for now.";
+function statsSvg(stats, theme) {
+  const color = themeColors(theme);
+  const joinedYear = new Date(stats.createdAt).getUTCFullYear();
+  const topLanguage = stats.languages[0]?.name || "JavaScript";
+  const metrics = stats.complete
+    ? [
+        [formatNumber(stats.totalRepositories), "Repositories"],
+        [formatNumber(stats.contributions), "Contributions"],
+        [topLanguage, "Top language"],
+        [String(joinedYear), "On GitHub since"],
+      ]
+    : [
+        [login.toUpperCase(), "GitHub"],
+        [String(joinedYear), "On GitHub since"],
+        [topLanguage, "Top language"],
+        ["Vietnam", "From"],
+      ];
 
-  const metrics = [
-    [repositoryTotal, "TOTAL REPOSITORIES", stats.privateAggregationEnabled ? "public + private" : "minimum known"],
-    [formatNumber(stats.publicRepositories), "PUBLIC PROJECTS", "visible to everyone"],
-    [formatNumber(stats.contributions), "CONTRIBUTIONS", "last 12 months"],
-    [formatNumber(stats.publicStars), "PUBLIC STARS", "across owned repos"],
-  ];
+  const metricNodes = metrics
+    .map(([value, label], index) => {
+      const x = index % 2 === 0 ? 28 : 230;
+      const y = index < 2 ? 82 : 156;
+      const fontSize = String(value).length > 10 ? 18 : 25;
+      return `<g transform="translate(${x} ${y})">
+        <text class="value" style="font-size:${fontSize}px">${escapeXml(value)}</text>
+        <text y="23" class="label">${escapeXml(label)}</text>
+      </g>`;
+    })
+    .join("\n");
 
-  const panels = metrics
-    .map(([value, label, detail], index) => {
-      const x = 30 + index * 215;
-      return `
-        <g transform="translate(${x} 70)">
-          <rect width="195" height="115" rx="16" fill="${color.panel}" stroke="${color.panelBorder}"/>
-          <rect x="16" y="18" width="28" height="4" rx="2" fill="${index % 2 ? color.cyan : color.accent}"/>
-          <text x="16" y="64" class="metric">${escapeXml(value)}</text>
-          <text x="16" y="87" class="label">${escapeXml(label)}</text>
-          <text x="16" y="104" class="detail">${escapeXml(detail)}</text>
-        </g>`;
+  const activity = stats.weeklyActivity.slice(-36);
+  const max = Math.max(...activity, 1);
+  const bars = activity
+    .map((count, index) => {
+      const height = Math.max(2, Math.round((count / max) * 24));
+      return `<rect x="${28 + index * 10}" y="${233 - height}" width="6" height="${height}" rx="3"/>`;
     })
     .join("");
+  const activityFooter = stats.complete
+    ? `<g fill="${color.cyan}" opacity=".8">${bars}</g>
+  <text x="28" y="250" class="label">last 12 months</text>`
+    : `<text x="28" y="235" class="label">github.com/${escapeXml(login)}</text>`;
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="900" height="245" viewBox="0 0 900 245" role="img" aria-labelledby="title description">
-  <title id="title">${escapeXml(login)} GitHub statistics</title>
-  <desc id="description">Aggregate repository, contribution, and star statistics.</desc>
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="440" height="260" viewBox="0 0 440 260" role="img" aria-labelledby="title desc">
+  <title id="title">${escapeXml(login)} GitHub stats</title>
+  <desc id="desc">Repository, contribution and language statistics.</desc>
   <defs>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
-      <stop stop-color="${color.accent}"/>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop stop-color="${color.purple}"/>
       <stop offset="1" stop-color="${color.cyan}"/>
     </linearGradient>
   </defs>
   <style>
     text { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-    .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; fill: ${color.muted}; }
-    .status { font-size: 10px; font-weight: 700; letter-spacing: 1px; fill: ${color.accent}; }
-    .metric { font-size: 32px; font-weight: 750; fill: ${color.title}; }
-    .label { font-size: 10px; font-weight: 700; letter-spacing: 1px; fill: ${color.title}; }
-    .detail { font-size: 10px; fill: ${color.muted}; }
-    .note { font-size: 11px; fill: ${color.muted}; }
+    .heading { fill: ${color.text}; font-size: 16px; font-weight: 700; }
+    .eyebrow { fill: ${color.purple}; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; }
+    .value { fill: ${color.text}; font-weight: 750; }
+    .label { fill: ${color.muted}; font-size: 11px; }
   </style>
-  <rect width="900" height="245" rx="22" fill="${color.background}"/>
-  <rect width="900" height="4" rx="2" fill="url(#accent)"/>
-  <text x="30" y="42" class="eyebrow">GITHUB / ${escapeXml(login.toUpperCase())}</text>
-  <g transform="translate(708 23)">
-    <rect width="162" height="28" rx="14" fill="${color.panel}" stroke="${color.panelBorder}"/>
-    <circle cx="15" cy="14" r="4" fill="${stats.privateAggregationEnabled ? color.cyan : color.muted}"/>
-    <text x="27" y="18" class="status">${status}</text>
-  </g>
-${panels}
-  <text x="450" y="220" text-anchor="middle" class="note">${escapeXml(note)}</text>
+  <rect x=".5" y=".5" width="439" height="259" rx="16" fill="${color.background}" stroke="${color.border}"/>
+  <rect x="1" y="1" width="438" height="4" rx="2" fill="url(#accent)"/>
+  <circle cx="32" cy="35" r="12" fill="${color.panel}" stroke="${color.border}"/>
+  <path d="M36 27a9 9 0 1 0 0 16 10 10 0 1 1 0-16Z" fill="${color.purple}"/>
+  <text x="53" y="32" class="eyebrow">CHT7</text>
+  <text x="53" y="50" class="heading">GitHub stats</text>
+  ${metricNodes}
+  ${activityFooter}
+</svg>
+`;
+}
+
+function languagesSvg(stats, theme) {
+  const color = themeColors(theme);
+  const visible = stats.languages.slice(0, 5);
+  const display = visible.length
+    ? visible
+    : [{ name: "JavaScript", percentage: 100, color: "#F1E05A" }];
+  const normalizedTotal = display.reduce(
+    (sum, language) => sum + language.percentage,
+    0,
+  );
+  let cursor = 24;
+  const segments = display
+    .map((language, index) => {
+      const width =
+        index === display.length - 1
+          ? 392 - (cursor - 24)
+          : Math.max(3, (language.percentage / normalizedTotal) * 392);
+      const node = `<rect x="${cursor.toFixed(1)}" y="67" width="${width.toFixed(1)}" height="10" fill="${language.color}"/>`;
+      cursor += width;
+      return node;
+    })
+    .join("");
+
+  const rows = display
+    .map((language, index) => {
+      const y = 112 + index * 29;
+      return `<g transform="translate(28 ${y})">
+        <circle cx="5" cy="-4" r="5" fill="${language.color}"/>
+        <text x="18" class="language">${escapeXml(language.name)}</text>
+        <text x="382" text-anchor="end" class="percent">${language.percentage.toFixed(1)}%</text>
+      </g>`;
+    })
+    .join("\n");
+
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="440" height="260" viewBox="0 0 440 260" role="img" aria-labelledby="title desc">
+  <title id="title">${escapeXml(login)} language mix</title>
+  <desc id="desc">Most used programming languages by repository size.</desc>
+  <defs>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop stop-color="${color.cyan}"/>
+      <stop offset="1" stop-color="${color.purple}"/>
+    </linearGradient>
+    <clipPath id="bar"><rect x="24" y="67" width="392" height="10" rx="5"/></clipPath>
+  </defs>
+  <style>
+    text { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .heading { fill: ${color.text}; font-size: 16px; font-weight: 700; }
+    .eyebrow { fill: ${color.cyan}; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; }
+    .language { fill: ${color.text}; font-size: 12px; font-weight: 600; }
+    .percent { fill: ${color.muted}; font-size: 12px; font-variant-numeric: tabular-nums; }
+  </style>
+  <rect x=".5" y=".5" width="439" height="259" rx="16" fill="${color.background}" stroke="${color.border}"/>
+  <rect x="1" y="1" width="438" height="4" rx="2" fill="url(#accent)"/>
+  <text x="24" y="31" class="eyebrow">LANGUAGES</text>
+  <text x="24" y="51" class="heading">Language mix</text>
+  <g clip-path="url(#bar)">${segments}</g>
+  ${rows}
 </svg>
 `;
 }
 
 async function main() {
-  const [{ repositories, privateAggregationEnabled }, contributions] =
-    await Promise.all([paginatedRepositories(), contributionCount()]);
-
-  const publicRepositories = repositories.filter(
-    (repository) => !repository.private,
-  );
-  const stats = {
-    privateAggregationEnabled,
-    totalRepositories: repositories.length,
-    publicRepositories: publicRepositories.length,
-    contributions,
-    publicStars: publicRepositories.reduce(
-      (total, repository) => total + repository.stargazers_count,
-      0,
-    ),
-  };
-
+  if (requireCompleteAccess && !token) {
+    throw new Error("PROFILE_TOKEN is missing.");
+  }
+  const stats = token
+    ? await authenticatedStats()
+    : await publicFallbackStats();
   const assetsDirectory = path.resolve("assets");
   await mkdir(assetsDirectory, { recursive: true });
+
   await Promise.all([
     writeFile(
       path.join(assetsDirectory, "profile-stats-light.svg"),
-      cardSvg(stats, "light"),
+      statsSvg(stats, "light"),
       "utf8",
     ),
     writeFile(
       path.join(assetsDirectory, "profile-stats-dark.svg"),
-      cardSvg(stats, "dark"),
+      statsSvg(stats, "dark"),
+      "utf8",
+    ),
+    writeFile(
+      path.join(assetsDirectory, "languages-light.svg"),
+      languagesSvg(stats, "light"),
+      "utf8",
+    ),
+    writeFile(
+      path.join(assetsDirectory, "languages-dark.svg"),
+      languagesSvg(stats, "dark"),
       "utf8",
     ),
   ]);
 
-  console.log(
-    `Profile cards generated (private aggregation: ${privateAggregationEnabled ? "enabled" : "disabled"}).`,
-  );
+  console.log("Profile cards generated.");
 }
 
 main().catch((error) => {

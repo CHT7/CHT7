@@ -1,57 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="245" viewBox="0 0 900 245" role="img" aria-labelledby="title description">
-  <title id="title">CHT7 GitHub statistics</title>
-  <desc id="description">Aggregate repository, contribution, and star statistics.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="260" viewBox="0 0 440 260" role="img" aria-labelledby="title desc">
+  <title id="title">CHT7 GitHub stats</title>
+  <desc id="desc">Repository, contribution and language statistics.</desc>
   <defs>
-    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
-      <stop stop-color="#8B7CFF"/>
-      <stop offset="1" stop-color="#38D6C7"/>
+    <linearGradient id="accent" x1="0" x2="1">
+      <stop stop-color="#A78BFA"/>
+      <stop offset="1" stop-color="#2DD4BF"/>
     </linearGradient>
   </defs>
   <style>
     text { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-    .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 1.5px; fill: #8F98AE; }
-    .status { font-size: 10px; font-weight: 700; letter-spacing: 1px; fill: #8B7CFF; }
-    .metric { font-size: 32px; font-weight: 750; fill: #F5F7FF; }
-    .label { font-size: 10px; font-weight: 700; letter-spacing: 1px; fill: #F5F7FF; }
-    .detail { font-size: 10px; fill: #8F98AE; }
-    .note { font-size: 11px; fill: #8F98AE; }
+    .heading { fill: #F0F6FC; font-size: 16px; font-weight: 700; }
+    .eyebrow { fill: #A78BFA; font-size: 10px; font-weight: 700; letter-spacing: 1.5px; }
+    .value { fill: #F0F6FC; font-weight: 750; }
+    .label { fill: #8B949E; font-size: 11px; }
   </style>
-  <rect width="900" height="245" rx="22" fill="#090B13"/>
-  <rect width="900" height="4" rx="2" fill="url(#accent)"/>
-  <text x="30" y="42" class="eyebrow">GITHUB / CHT7</text>
-  <g transform="translate(708 23)">
-    <rect width="162" height="28" rx="14" fill="#111522" stroke="#252B3D"/>
-    <circle cx="15" cy="14" r="4" fill="#38D6C7"/>
-    <text x="27" y="18" class="status">PRIVATE AGGREGATES ON</text>
-  </g>
-
-        <g transform="translate(30 70)">
-          <rect width="195" height="115" rx="16" fill="#111522" stroke="#252B3D"/>
-          <rect x="16" y="18" width="28" height="4" rx="2" fill="#8B7CFF"/>
-          <text x="16" y="64" class="metric">6</text>
-          <text x="16" y="87" class="label">TOTAL REPOSITORIES</text>
-          <text x="16" y="104" class="detail">public + private</text>
-        </g>
-        <g transform="translate(245 70)">
-          <rect width="195" height="115" rx="16" fill="#111522" stroke="#252B3D"/>
-          <rect x="16" y="18" width="28" height="4" rx="2" fill="#38D6C7"/>
-          <text x="16" y="64" class="metric">6</text>
-          <text x="16" y="87" class="label">PUBLIC PROJECTS</text>
-          <text x="16" y="104" class="detail">visible to everyone</text>
-        </g>
-        <g transform="translate(460 70)">
-          <rect width="195" height="115" rx="16" fill="#111522" stroke="#252B3D"/>
-          <rect x="16" y="18" width="28" height="4" rx="2" fill="#8B7CFF"/>
-          <text x="16" y="64" class="metric">0</text>
-          <text x="16" y="87" class="label">CONTRIBUTIONS</text>
-          <text x="16" y="104" class="detail">last 12 months</text>
-        </g>
-        <g transform="translate(675 70)">
-          <rect width="195" height="115" rx="16" fill="#111522" stroke="#252B3D"/>
-          <rect x="16" y="18" width="28" height="4" rx="2" fill="#38D6C7"/>
-          <text x="16" y="64" class="metric">1</text>
-          <text x="16" y="87" class="label">PUBLIC STARS</text>
-          <text x="16" y="104" class="detail">across owned repos</text>
-        </g>
-  <text x="450" y="220" text-anchor="middle" class="note">Private work is counted only in aggregate — no names, URLs, or metadata are published.</text>
+  <rect x=".5" y=".5" width="439" height="259" rx="16" fill="#0D1117" stroke="#30363D"/>
+  <rect x="1" y="1" width="438" height="4" rx="2" fill="url(#accent)"/>
+  <circle cx="32" cy="35" r="12" fill="#151B23" stroke="#30363D"/>
+  <path d="M36 27a9 9 0 1 0 0 16 10 10 0 1 1 0-16Z" fill="#A78BFA"/>
+  <text x="53" y="32" class="eyebrow">CHT7</text>
+  <text x="53" y="50" class="heading">GitHub stats</text>
+  <g transform="translate(28 82)">
+        <text class="value" style="font-size:25px">CHT7</text>
+        <text y="23" class="label">GitHub</text>
+      </g>
+<g transform="translate(230 82)">
+        <text class="value" style="font-size:25px">2020</text>
+        <text y="23" class="label">On GitHub since</text>
+      </g>
+<g transform="translate(28 156)">
+        <text class="value" style="font-size:25px">JavaScript</text>
+        <text y="23" class="label">Top language</text>
+      </g>
+<g transform="translate(230 156)">
+        <text class="value" style="font-size:25px">Vietnam</text>
+        <text y="23" class="label">From</text>
+      </g>
+  <text x="28" y="235" class="label">github.com/CHT7</text>
 </svg>

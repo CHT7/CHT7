@@ -1,70 +1,90 @@
 <div align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./assets/hero-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="./assets/hero-light.svg">
-    <img alt="Tân — CHT7, building useful software from Vietnam" src="./assets/hero-light.svg" width="100%">
-  </picture>
+  <img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:7F00FF,100:00C9A7&height=210&section=header&text=CHT7&fontSize=68&fontColor=ffffff&animation=fadeIn&fontAlignY=36&desc=Tann%20%E2%80%A2%20Vietnam&descAlignY=58&descSize=18" alt="CHT7">
+
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=23&duration=3000&pause=900&color=8B5CF6&center=true&vCenter=true&width=850&lines=Xin+ch%C3%A0o%2C+m%C3%ACnh+l%C3%A0+T%C3%A2n+%F0%9F%91%8B;Bot+Discord%2C+web+v%C3%A0+m%E1%BA%A5y+tool+linh+tinh;JavaScript+%E2%80%A2+Node.js+%E2%80%A2+Python+%E2%80%A2+Lua" alt="Typing introduction">
+
+  <p>
+    <a href="https://moonbotvn.vercel.app/"><img src="https://img.shields.io/badge/MoonBot-Website-7C3AED?style=for-the-badge&logo=vercel&logoColor=white" alt="MoonBot website"></a>
+    <a href="https://bio.link/moondiscord"><img src="https://img.shields.io/badge/Moon-Discord-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Moon Discord"></a>
+    <a href="https://github.com/CHT7"><img src="https://img.shields.io/badge/GitHub-CHT7-181717?style=for-the-badge&logo=github" alt="GitHub profile"></a>
+  </p>
+
+  <img src="https://komarev.com/ghpvc/?username=CHT7&label=PROFILE+VIEWS&color=7C3AED&style=flat-square" alt="Profile views">
 </div>
 
+## Xin chào 👋
+
+Mình là **Tân**, đến từ Việt Nam. Mình thích mày mò code, làm bot Discord, web và những công cụ nhỏ cho mấy ý tưởng bất chợt. Thường thì mình cứ làm thử trước, thấy chưa ổn lại sửa tiếp.
+
+Ngoài GitHub, phần lớn thời gian mình xuất hiện ở **Moon**, một cộng đồng Discord nhỏ nhưng khá nhộn nhịp.
+
+## MoonBot & Moon 🌙
+
+<table>
+  <tr>
+    <td width="120" align="center">
+      <a href="https://moonbotvn.vercel.app/">
+        <img width="88" src="https://moonbotvn.vercel.app/assets/img/favicon.webp" alt="MoonBot logo">
+      </a>
+    </td>
+    <td>
+      <strong>MoonBot</strong><br>
+      Bot Discord đa năng dành cho cộng đồng, có tiện ích server, giải trí, economy, mini-game và các hệ thống tương tác.<br><br>
+      <a href="https://moonbotvn.vercel.app/"><img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fmoonbotvn.vercel.app%2Fapi%2Fserver%2F593976060496969750%2Flive&query=%24.bot.status&label=MoonBot&color=5865F2&logo=discord&logoColor=white&style=flat-square" alt="MoonBot status"></a>
+      <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fmoonbotvn.vercel.app%2Fapi%2Fserver%2F593976060496969750%2Flive&query=%24.bot.guilds&suffix=%20servers&label=Serving&color=8B5CF6&style=flat-square" alt="MoonBot servers">
+      <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fmoonbotvn.vercel.app%2Fapi%2Fserver%2F593976060496969750%2Flive&query=%24.bot.users&suffix=%20users&label=Watching&color=00A896&style=flat-square" alt="MoonBot users">
+    </td>
+  </tr>
+</table>
+
 <p align="center">
-  <a href="https://github.com/CHT7"><img alt="GitHub" src="https://img.shields.io/badge/GitHub-CHT7-181717?style=flat-square&logo=github"></a>
-  <a href="https://bio.link/moondiscord"><img alt="Discord and social links" src="https://img.shields.io/badge/Let's_connect-5865F2?style=flat-square&logo=discord&logoColor=white"></a>
-  <img alt="Based in Vietnam" src="https://img.shields.io/badge/Based_in-Vietnam-DA251D?style=flat-square">
+  <a href="https://bio.link/moondiscord">
+    <img src="https://discord.com/api/guilds/1229472880555982999/widget.png?style=banner2" alt="Join the Moon Discord server">
+  </a>
+  <br>
+  <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fmoonbotvn.vercel.app%2Fapi%2Fserver%2F593976060496969750%2Flive&query=%24.counts.onlineHumans&suffix=%20online&label=Moon&color=00A896&logo=discord&logoColor=white&style=flat-square" alt="Moon members online">
+  <img src="https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fmoonbotvn.vercel.app%2Fapi%2Fserver%2F593976060496969750%2Flive&query=%24.counts.voiceMembers&suffix=%20in%20voice&label=Voice&color=7C3AED&style=flat-square" alt="Moon voice members">
 </p>
 
-## Hello / Xin chào
+## GitHub của mình 📊
 
-I'm Tân, an independent developer who enjoys turning repetitive work and curious ideas into practical software. I learn by building, breaking, and shipping — usually somewhere between automation, backend tools, and small products that solve a real problem.
-
-```text
-currently  →  sharpening my systems, automation, and product-building skills
-principle  →  useful first, polished always, simpler when possible
-```
-
-## Selected work
-
-| Project | What it solves | Stack |
-| :-- | :-- | :-- |
-| [cash-counter](https://github.com/CHT7/cash-counter) | Counts cash and handles transactions that happen during reconciliation. | JavaScript |
-| [DiabloNetwork](https://github.com/CHT7/DiabloNetwork) | Discovers devices on a local network and enriches MAC vendor information. | Python |
-| [Roblox_Scripts](https://github.com/CHT7/Roblox_Scripts) | A public collection of scripts created or adapted for testing and automation. | Lua |
-
-## GitHub at a glance
-
-<div align="center">
+<p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="./assets/profile-stats-dark.svg">
     <source media="(prefers-color-scheme: light)" srcset="./assets/profile-stats-light.svg">
-    <img alt="CHT7 GitHub statistics" src="./assets/profile-stats-light.svg" width="100%">
+    <img width="49%" src="./assets/profile-stats-dark.svg" alt="CHT7 GitHub stats">
   </picture>
-</div>
-
-<sub>Private repositories are included only as aggregate numbers. Their names, descriptions, languages, URLs, and activity details are never published by this repository.</sub>
-
-## Toolbox
-
-<p>
-  <img alt="JavaScript" src="https://img.shields.io/badge/JavaScript-18181B?style=flat-square&logo=javascript&logoColor=F7DF1E">
-  <img alt="Node.js" src="https://img.shields.io/badge/Node.js-18181B?style=flat-square&logo=nodedotjs&logoColor=5FA04E">
-  <img alt="Python" src="https://img.shields.io/badge/Python-18181B?style=flat-square&logo=python&logoColor=3776AB">
-  <img alt="Lua" src="https://img.shields.io/badge/Lua-18181B?style=flat-square&logo=lua&logoColor=5A45FF">
-  <img alt="Git" src="https://img.shields.io/badge/Git-18181B?style=flat-square&logo=git&logoColor=F05032">
-  <img alt="GitHub Actions" src="https://img.shields.io/badge/GitHub_Actions-18181B?style=flat-square&logo=githubactions&logoColor=2088FF">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/languages-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="./assets/languages-light.svg">
+    <img width="49%" src="./assets/languages-dark.svg" alt="CHT7 language statistics">
+  </picture>
 </p>
 
-## Find me
+## Mấy thứ mình hay dùng 🧰
 
-The easiest way to reach me is through [my social hub](https://bio.link/moondiscord). More links live at [guns.lol/ddiablo](https://guns.lol/ddiablo).
+<p align="center">
+  <img src="https://skillicons.dev/icons?i=js,nodejs,py,lua,html,css,mongodb,mysql,git,github,vscode&perline=11&theme=dark" alt="JavaScript, Node.js, Python, Lua, HTML, CSS, MongoDB, MySQL, Git, GitHub and VS Code">
+</p>
+
+## Một câu quote ghé ngang ✍️
+
+<p align="center">
+  <img width="90%" src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight" alt="Random developer quote">
+</p>
+
+## Ghé chơi nhé ☕
+
+<p align="center">
+  <a href="https://bio.link/moondiscord"><img src="https://img.shields.io/badge/Discord-Moon-5865F2?style=for-the-badge&logo=discord&logoColor=white" alt="Discord"></a>
+  <a href="https://www.facebook.com/C.hoangtan"><img src="https://img.shields.io/badge/Facebook-C.HoangTan-1877F2?style=for-the-badge&logo=facebook&logoColor=white" alt="Facebook"></a>
+  <a href="https://www.buymeacoffee.com/HoangTan"><img src="https://img.shields.io/badge/Buy_me_a_coffee-FFDD00?style=for-the-badge&logo=buymeacoffee&logoColor=black" alt="Buy me a coffee"></a>
+</p>
 
 <details>
-  <summary>Support my work</summary>
+  <summary>Nếu bạn muốn ủng hộ thêm</summary>
   <br>
-  If something I made helped you, you can support future experiments through
-  <a href="https://www.buymeacoffee.com/HoangTan">Buy Me a Coffee</a>,
-  <a href="https://www.paypal.com/paypalme/chtan7">PayPal</a>, or
-  <a href="https://playerduo.net/hoangtan85">PlayerDuo</a>.
+  Ngoài Buy Me a Coffee, mình còn có <a href="https://www.paypal.com/paypalme/chtan7">PayPal</a> và <a href="https://playerduo.net/hoangtan85">PlayerDuo</a>. Cảm ơn bạn đã ghé qua!
 </details>
 
-<br>
-
-<p align="center"><sub>Designed and automated by CHT7 · Metrics refresh only when the underlying numbers change.</sub></p>
+<img width="100%" src="https://capsule-render.vercel.app/api?type=waving&color=0:00C9A7,100:7F00FF&height=120&section=footer" alt="Footer">
