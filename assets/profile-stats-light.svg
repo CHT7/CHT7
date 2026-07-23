@@ -21,20 +21,21 @@
   <text x="53" y="32" class="eyebrow">CHT7</text>
   <text x="53" y="50" class="heading">GitHub stats</text>
   <g transform="translate(28 82)">
-        <text class="value" style="font-size:25px">CHT7</text>
-        <text y="23" class="label">GitHub</text>
+        <text class="value" style="font-size:25px">29</text>
+        <text y="23" class="label">Repositories</text>
       </g>
 <g transform="translate(230 82)">
-        <text class="value" style="font-size:25px">2020</text>
-        <text y="23" class="label">On GitHub since</text>
+        <text class="value" style="font-size:25px">296</text>
+        <text y="23" class="label">Contributions</text>
       </g>
 <g transform="translate(28 156)">
-        <text class="value" style="font-size:25px">JavaScript</text>
+        <text class="value" style="font-size:25px">HTML</text>
         <text y="23" class="label">Top language</text>
       </g>
 <g transform="translate(230 156)">
-        <text class="value" style="font-size:25px">Vietnam</text>
-        <text y="23" class="label">From</text>
+        <text class="value" style="font-size:25px">2020</text>
+        <text y="23" class="label">On GitHub since</text>
       </g>
-  <text x="28" y="235" class="label">github.com/CHT7</text>
+  <g fill="#009688" opacity=".8"><rect x="28" y="231" width="6" height="2" rx="3"/><rect x="38" y="231" width="6" height="2" rx="3"/><rect x="48" y="231" width="6" height="2" rx="3"/><rect x="58" y="231" width="6" height="2" rx="3"/><rect x="68" y="231" width="6" height="2" rx="3"/><rect x="78" y="231" width="6" height="2" rx="3"/><rect x="88" y="231" width="6" height="2" rx="3"/><rect x="98" y="226" width="6" height="7" rx="3"/><rect x="108" y="231" width="6" height="2" rx="3"/><rect x="118" y="231" width="6" height="2" rx="3"/><rect x="128" y="231" width="6" height="2" rx="3"/><rect x="138" y="231" width="6" height="2" rx="3"/><rect x="148" y="231" width="6" height="2" rx="3"/><rect x="158" y="223" width="6" height="10" rx="3"/><rect x="168" y="231" width="6" height="2" rx="3"/><rect x="178" y="231" width="6" height="2" rx="3"/><rect x="188" y="231" width="6" height="2" rx="3"/><rect x="198" y="231" width="6" height="2" rx="3"/><rect x="208" y="231" width="6" height="2" rx="3"/><rect x="218" y="231" width="6" height="2" rx="3"/><rect x="228" y="225" width="6" height="8" rx="3"/><rect x="238" y="226" width="6" height="7" rx="3"/><rect x="248" y="221" width="6" height="12" rx="3"/><rect x="258" y="225" width="6" height="8" rx="3"/><rect x="268" y="226" width="6" height="7" rx="3"/><rect x="278" y="231" width="6" height="2" rx="3"/><rect x="288" y="231" width="6" height="2" rx="3"/><rect x="298" y="231" width="6" height="2" rx="3"/><rect x="308" y="231" width="6" height="2" rx="3"/><rect x="318" y="231" width="6" height="2" rx="3"/><rect x="328" y="222" width="6" height="11" rx="3"/><rect x="338" y="224" width="6" height="9" rx="3"/><rect x="348" y="231" width="6" height="2" rx="3"/><rect x="358" y="226" width="6" height="7" rx="3"/><rect x="368" y="209" width="6" height="24" rx="3"/><rect x="378" y="231" width="6" height="2" rx="3"/></g>
+  <text x="28" y="250" class="label">last 12 months</text>
 </svg>
