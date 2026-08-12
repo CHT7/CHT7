@@ -14,9 +14,11 @@
 
 ## Xin chào 👋
 
-Mình là **Tân**, đến từ Việt Nam. Mình thích mày mò code, làm bot Discord, web và những công cụ nhỏ cho mấy ý tưởng bất chợt. Thường thì mình cứ làm thử trước, thấy chưa ổn lại sửa tiếp.
+Mình là **Tân**. Thỉnh thoảng code bot Discord, làm web, viết vài công cụ linh tinh, chủ yếu là vì tự dưng nghĩ ra thứ gì đó rồi muốn xem mình có làm được không <3 .
 
-Ngoài GitHub, phần lớn thời gian mình xuất hiện ở **Moon**, một cộng đồng Discord nhỏ nhưng khá nhộn nhịp.
+Phần lớn mấy thứ mình làm đều bắt đầu khá đơn giản, sau đó sửa tới sửa lui rồi thành một thứ khác hẳn ban đầu.
+
+Ngoài GitHub thì mình thường ở **Moon**, Server Discord mình vẫn đang chăm chút mỗi ngày.
 
 ## MoonBot & Moon 🌙
 
@@ -67,7 +69,7 @@ Ngoài GitHub, phần lớn thời gian mình xuất hiện ở **Moon**, một 
   <img src="https://skillicons.dev/icons?i=js,nodejs,py,lua,html,css,mongodb,mysql,git,github,vscode&perline=11&theme=dark" alt="JavaScript, Node.js, Python, Lua, HTML, CSS, MongoDB, MySQL, Git, GitHub and VS Code">
 </p>
 
-## Một câu quote ghé ngang ✍️
+## Châm ngôn ✍️
 
 <p align="center">
   <img width="90%" src="https://quotes-github-readme.vercel.app/api?type=horizontal&theme=tokyonight" alt="Random developer quote">
